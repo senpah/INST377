@@ -5,12 +5,20 @@
 	div {
 		margin-bottom: 20px;
 	}
+
+	table {
+    border-collapse: collapse;
+	}
+
+	table, th, td {
+    border: 1px solid black;
+	}
 </style>
 
 <!-- Data -->
 <script>
 
-// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment. 
+// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment.
 var organizations = [
 	 {
         "Region": "East Asia & Pacific",
@@ -19,7 +27,7 @@ var organizations = [
         "Organization Name": "200 Square",
         "Organization Type": "For-profit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "200 Square is an online real estate agent in New Zealand.",        
+        "Description": "200 Square is an online real estate agent in New Zealand.",
         "City": "Wellington",
         "State/Region": "Wellington",
         "Founding Year": 2010,
@@ -34,7 +42,7 @@ var organizations = [
         "Organization Name": "21c Consultancy",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",        
+        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",
         "City": "London",
         "State/Region": "",
         "Founding Year": 2015,
@@ -49,7 +57,7 @@ var organizations = [
         "Organization Name": "2GIS",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "2GIS is a city information service combined with a map. ",        
+        "Description": "2GIS is a city information service combined with a map. ",
         "City": "Novosibirsk",
         "State/Region": "Novosibirsk Oblast",
         "Founding Year": 1999,
@@ -64,7 +72,7 @@ var organizations = [
         "Organization Name": "2nd City Zoning",
         "Organization Type": "Nonprofit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",        
+        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",
         "City": "Chicago",
         "State/Region": "Illinois",
         "Founding Year": 2013,
@@ -94,7 +102,7 @@ var organizations = [
         "Organization Name": "360 Yield Center",
         "Organization Type": "For-profit",
         "Sectors": "Agriculture",
-        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",        
+        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",
         "City": "Morton",
         "State/Region": "Illinois",
         "Founding Year": 2014,
@@ -124,7 +132,7 @@ var organizations = [
         "Organization Name": "3Tier (Europe) ",
         "Organization Type": "For-profit",
         "Sectors": "Energy and climate",
-        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",        
+        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",
         "City": "Helsinki",
         "State/Region": "Uusimaa",
         "Founding Year": 2012,
@@ -139,7 +147,7 @@ var organizations = [
         "Organization Name": "5PSolutions",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "5PSolutions are artisans of mobile platforms.",       
+        "Description": "5PSolutions are artisans of mobile platforms.",
         "City": "Fairfax",
         "State/Region": "Virginia",
         "Founding Year": 2007,
@@ -154,7 +162,7 @@ var organizations = [
         "Organization Name": "AAA National",
         "Organization Type": "Other",
         "Sectors": "Transportation and logistics",
-        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",        
+        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",
         "City": "Irving",
         "State/Region": "Texas",
         "Founding Year": 1902,
@@ -184,7 +192,7 @@ var organizations = [
         "Organization Name": "ABRELATAM",
         "Organization Type": "Nonprofit",
         "Sectors": "Governance",
-        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",        
+        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",
         "City": "Santiago",
         "State/Region": "",
         "Founding Year": 2015,
@@ -192,7 +200,7 @@ var organizations = [
         "Type of Data Used": "",
         "profileID": "1687"
     }
-	
+
 ];
 </script>
 
@@ -200,14 +208,133 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+<h1>Organizations</h1>
+     <table id="orgs">
+        <thead>
+            <tr>
+							<th>Region</th>
+              <th>Country</th>
+              <th>Country Income Level</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Sectors</th>
+              <th>Description</th>
+              <th>City</th>
+              <th>State/Region</th>
+              <th>Founding Year</th>
+              <th>Size</th>
+              <th>Type of Data Used</th>
+              <th>profileID</th>
+            </tr>
+        </thead>
+
+        <tbody id="org_table">
+        </tbody>
+
+     </table>
+
+<h2>Statistics</h2>
+    <table>
+        <thead>
+            <tr>
+							<th>Non-profit Organizations</th>
+							<th>Organizations Less Than 10 Years Old</th>
+							<th>North American Organizations</th>
+							<th>Organizations That Use Transportation Data Type</th>
+							<th>For-profit Organizations with a Size of 1 to 10</th>
+						</tr>
+        </thead>
+
+        <tbody id="stats_table">
+        </tbody>
+
+    </table>
 
 <script>
-// outputs the first item of the organizations array. Just for testing.
-console.log(organizations[0]); 
+var text = "";
+for (var i in organizations) {
+    if(organizations.hasOwnProperty(i)){
+        var obj = organizations[i]
+        rowtext = "<tr onclick=hide(this) >"
+        for (var j in obj) {
+            rowtext += "<td>" + obj[j] + "</td>"
+        }
+        rowtext += "</tr>"
+        text += rowtext
+    }
+}
+document.getElementById("org_table").innerHTML = text;
+</script>
 
-// Your JavaScript code goes here
+<script type="text/javascript">
+function npCount(){
+	npCounter = 0;
+	for (var i = 0; i < organizations.length; i++){
+		for (var j in organizations[i]){
+			if (j == "Organization Type" && organizations[i][j] == "Nonprofit"){
+				npCounter++;
+			}
+		}
+	}
+  return npCounter;
+}
 
+function newOrgCount(){
+	newOrgCounter = 0;
+	for (var i = 0; i < organizations.length; i++){
+		for (var j in organizations[i]){
+			if (j == "Founding Year" && organizations[i][j] > 2008){
+				newOrgCounter++;
+			}
+		}
+	}
+	return newOrgCounter;
+}
+
+function naOrgCount() {
+	naOrgCounter = 0;
+	for (var i = 0; i < organizations.length; i++){
+		for (var j in organizations[i]){
+			if (j == "Region" && organizations[i][j] == "North America"){
+				naOrgCounter++;
+			}
+		}
+	}
+	return naOrgCounter;
+}
+
+function transportDataCount() {
+	transportDataCounter = 0;
+	for (var i = 0; i < organizations.length; i++){
+		for (var j in organizations[i]){
+			if (j == "Type of Data Used" && organizations[i][j].includes("Transportation")){
+				transportDataCounter++;
+			}
+		}
+	}
+	return transportDataCounter;
+}
+
+function smallSizeCount(){
+	smallSizeCounter = 0;
+	for (var i = 0; i < organizations.length; i++){
+		for(var j in organizations[i]){
+			if (j == "Size" && organizations[i][j] == "1 to 10"){
+				smallSizeCounter++;
+			}
+		}
+	}
+	return smallSizeCounter-1;
+}
+
+var text = "";
+text += "<tr><td>" + npCount() +
+        "</td><td>" + newOrgCount()+
+         "</td><td>" + naOrgCount() +
+         "</td><td>" + transportDataCount() +
+				 "</td><td>" + smallSizeCount() +
+         "</td></tr>"
+document.getElementById("stats_table").innerHTML = text;
 
 </script>
 
